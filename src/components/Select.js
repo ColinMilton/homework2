@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { newCars } from '../reducers/select';
 
 export default class Select extends React.Component {
@@ -25,7 +24,3 @@ export default class Select extends React.Component {
     );
   }
 }
-
-Select.propTypes = {
-  handleSelect: PropTypes.func.isRequired,
-};
