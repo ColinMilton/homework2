@@ -3,9 +3,6 @@ import React from 'react';
 import Motor from './Motor';
 import Moving from './Moving';
 
-const test;
-console.log(test);
-
 export default class Car extends React.Component {
   render() {
     const { cars, addCar, selectedCar, toMove, toStop, setMotorOn, setMotorOff, deleteCar } = this.props;
