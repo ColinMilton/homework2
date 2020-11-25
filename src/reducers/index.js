@@ -4,6 +4,6 @@ import { carsReducer } from './cars';
 import { selectReducer } from './select';
 
 export const rootReducer = combineReducers({
-  carsList: carsReducer,
+  cars: carsReducer,
   select: selectReducer,
 });

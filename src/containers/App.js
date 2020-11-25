@@ -2,61 +2,48 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Car from '../components/Car';
-import { deleteCar, addCar, getMotorOn, getMotorOff, toMove, toStop } from '../actions/CarsActions';
+import { deleteCar, addCar, setMotorOn, setMotorOff, toMove, toStop } from '../actions/CarsActions';
 
 import Select from '../components/Select';
 import { handleSelect } from '../actions/SelectActions';
 
 class App extends React.Component {
   render() {
-    const {
-      carsList,
-      deleteCarAction,
-      addCarAction,
-      getMotorOnAction,
-      getMotorOffAction,
-      toStopAction,
-      toMoveAction,
-      select,
-      handleSelectAction,
-    } = this.props;
+    const { cars, deleteCar, addCar, setMotorOn, setMotorOff, toStop, toMove, select, handleSelect } = this.props;
     return (
       <div>
         <Car
-          cars={carsList.cars}
-          deleteCar={deleteCarAction}
-          addCar={addCarAction}
-          getMotorOn={getMotorOnAction}
-          getMotorOff={getMotorOffAction}
-          toStop={toStopAction}
-          toMove={toMoveAction}
+          cars={cars}
+          deleteCar={deleteCar}
+          addCar={addCar}
+          setMotorOn={setMotorOn}
+          setMotorOff={setMotorOff}
+          toStop={toStop}
+          toMove={toMove}
           selectedCar={select.selectedCar}
         />
-        <Select handleSelect={handleSelectAction} />
+        <Select handleSelect={handleSelect} />
       </div>
     );
   }
 }
 
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
   return {
-    carsList: store.carsList,
+    cars: store.cars,
     select: store.select,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    deleteCarAction: cars => dispatch(deleteCar(cars)),
-    addCarAction: cars => dispatch(addCar(cars)),
-    toMoveAction: isMoving => dispatch(toMove(isMoving)),
-    toStopAction: isMoving => dispatch(toStop(isMoving)),
-    getMotorOnAction: isMotorOn => dispatch(getMotorOn(isMotorOn)),
-    getMotorOffAction: isMotorOn => dispatch(getMotorOff(isMotorOn)),
-    handleSelectAction: selectedCar => dispatch(handleSelect(selectedCar)),
+    deleteCar: (cars) => dispatch(deleteCar(cars)),
+    addCar: (cars) => dispatch(addCar(cars)),
+    toMove: (isMoving) => dispatch(toMove(isMoving)),
+    toStop: (isMoving) => dispatch(toStop(isMoving)),
+    setMotorOn: (isMotorOn) => dispatch(setMotorOn(isMotorOn)),
+    setMotorOff: (isMotorOn) => dispatch(setMotorOff(isMotorOn)),
+    handleSelect: (selectedCar) => dispatch(handleSelect(selectedCar)),
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
